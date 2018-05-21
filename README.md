@@ -1,8 +1,6 @@
-# Subtle.js
-
-A calm and subtle particle effect using canvas.
-
 ![screenshot.png](screenshot.png)
+
+A beautiful, calm and subtle particle effect using canvas.
 
 ## Setup
 
