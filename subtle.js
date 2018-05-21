@@ -36,7 +36,7 @@
             this.r += this.s;
 
             // Increase hue by 1
-            this.c += 1;
+            this.c = (this.c + 1) % 360;
 
             // r <= 25%
             if (this.r < state.conf.radius * 0.25) {
