@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Subtle.js</title>
+    <script src="../subtle.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Subtle.mount({
+                mode: Subtle.mode.square,
+                speed: 0.2,
+                radius: 32,
+                count: 25,
+                lightness: 0.75,
+                saturation: 0.25,
+                randomizeRotation: true,
+                target: 'main',
+            });
+        });
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin:0;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        main {
+            width: 50vw;
+            height: 50vh;
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 3rem;
+            background-color: hsla(0,0%,100%,.75);
+            padding: 10rem 10rem;
+            border-radius: 100rem 100rem;
+            color: hsl(0,0%,15%);
+        }
+        .js {
+            color: hsl(62,60%,45%);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Subtle<span class="js">.js</span></h1>
+    </main>
+</body>
+</html>
