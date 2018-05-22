@@ -1,6 +1,6 @@
-![screenshot.png](screenshot.png)
-
 A beautiful, calm and subtle particle effect using canvas.
+
+![screenshot.png](screenshot.png)
 
 ## Setup
 
@@ -10,11 +10,7 @@ Add the following snippet to your website:
 ```html
 <!-- Start of Subtle.js -->
 <script src="subtle.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    Subtle.mount();
-});
-</script>
+<script>document.addEventListener('DOMContentLoaded', Subtle.mount);</script>
 <!-- End of Subtle.js -->
 ```
 
@@ -25,7 +21,8 @@ The following keys are currently supported:
 
 | Key               | Default       | Description
 | ----------------- | ------------- | ---------------------------------
-| mode              | `Subtle.mode.circle` | The particle shape
+| mode              | `Subtle.mode.square` | The particle shape
+| target            | `body`        | Target element selector
 | radius            | `32`          | The particle radius or size
 | speed             | `0.25`        | The average particle velocity
 | count             | `25`          | The number of particles on screen

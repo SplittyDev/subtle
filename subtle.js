@@ -135,10 +135,15 @@
 
         // Fitting function
         const subtle_fit = () => {
-            state.canvas.width = window.innerWidth;
-            state.canvas.height = window.innerHeight;
-            state.width = state.canvas.scrollWidth;
-            state.height = state.canvas.scrollHeight;
+            const bounds = state.el.getBoundingClientRect();
+            state.canvas.style.left = `${bounds.left}px`;
+            state.canvas.style.top = `${bounds.top}px`;
+            state.canvas.style.width = `${bounds.width}px`;
+            state.canvas.style.height = `${bounds.height}px`;
+            state.canvas.width = bounds.width;
+            state.canvas.height = bounds.height;
+            state.width = bounds.width;
+            state.height = bounds.height;
         }
 
         // Fit canvas and refit on resize
@@ -200,15 +205,16 @@
 
     // Default configuration
     const DefaultConf = {
+        target: 'body',
         radius: 32,
         speed: 0.25,
         count: 25,
         lightness: 0.75,
         saturation: 0.25,
         randomizeRotation: false,
-        mode: Modes.circle,
+        mode: Modes.square,
     };
-
+    
     // Subtle object
     const Subtle = {
         mode: Modes,
@@ -227,17 +233,22 @@
         canvas.style.zIndex = '-1';
         canvas.style.top = '0';
         canvas.style.left = '0';
-        canvas.style.width = '100vw';
-        canvas.style.height = '100vh';
 
-        // Add canvas to body
-        document.body.appendChild(canvas);
+        // Merge configuration
+        const finalConf = Object.assign({}, DefaultConf, conf);
+
+        // Get target element
+        const targetEl = document.querySelector(finalConf.target || 'body');
 
         // Initialize state
         const state = {
             canvas: canvas,
-            conf: Object.assign({}, DefaultConf, conf),
+            conf: finalConf,
+            el: targetEl,
         };
+
+        // Add canvas to target element
+        state.el.appendChild(canvas);
 
         // Prepare rendering
         subtle_setup(state);
