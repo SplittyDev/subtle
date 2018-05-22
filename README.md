@@ -6,13 +6,14 @@ A beautiful, calm and subtle particle effect using canvas.
 
 ### Simple setup
 
-Add the following snippet to your website:
-```html
-<!-- Start of Subtle.js -->
-<script src="subtle.js"></script>
-<script>document.addEventListener('DOMContentLoaded', Subtle.mount);</script>
-<!-- End of Subtle.js -->
-```
+1. Download the `subtle.js` file by right-clicking [this][rawfile] and clicking `save as`
+2. Add the following snippet to your website:
+   ```html
+   <!-- Start of Subtle.js -->
+   <script src="subtle.js"></script>
+   <script>document.addEventListener('DOMContentLoaded', Subtle.mount);      </script>
+   <!-- End of Subtle.js -->
+   ```
 
 ### Advanced setup
 
@@ -43,3 +44,6 @@ Subtle.mount({
     randomizeRotation: true,
 });
 ```
+
+
+[rawfile]: https://raw.githubusercontent.com/SplittyDev/subtle/master/subtle.js
