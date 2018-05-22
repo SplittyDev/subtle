@@ -22,18 +22,20 @@ The following keys are currently supported:
 | Key               | Default       | Description
 | ----------------- | ------------- | ---------------------------------
 | mode              | `Subtle.mode.square` | The particle shape
-| target            | `body`        | Target element selector
-| radius            | `32`          | The particle radius or size
+| target            | `'body'`      | Target element selector
+| exclude           | `null`        | Exclusion element selector
+| size              | `32`          | The particle diameter or size
 | speed             | `0.25`        | The average particle velocity
 | count             | `25`          | The number of particles on screen
 | lightness         | `0.75`        | The lightness of a particle
 | saturation        | `0.25`        | The color intensity of a particle
 | randomizeRotation | `false`       | Whether to randomize particle rotation
+| contain           | `false`       | Whether to fully restrict particles to target bounds
 
-Example of an intense square configuration with randomized rotation:
+Example of an intense circle configuration with randomized rotation:
 ```js
 Subtle.mount({
-    mode: Subtle.mode.square,
+    mode: Subtle.mode.circle,
     speed: 0.3,
     count: 50,
     lightness: 0.6,

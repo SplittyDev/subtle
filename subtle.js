@@ -12,7 +12,7 @@
             // Opacity starts with 0
             this.a = 0;
 
-            // Radius/Size starts with 0
+            // Size starts with 0
             this.r = 0;
 
             // Random hue
@@ -22,35 +22,61 @@
             this.s = (state.conf.speed + (Math.random() * state.conf.speed)) / 2.0;
 
             // Random position
-            this.x = (Math.random() * state.width) | 0;
-            this.y = (Math.random() * state.height) | 0;
+            const calculatePosition = () => {
+                const getRandomIntInclusive = (min, max) => {
+                    min = Math.ceil(min);
+                    max = Math.floor(max);
+                    return Math.floor(Math.random() * (max - min + 1)) + min;
+                };
+                const pad = state.conf.contain ? state.conf.size : 0;
+                this.x = getRandomIntInclusive(pad, state.width - pad * 2);
+                this.y = getRandomIntInclusive(pad, state.height - pad * 2);
+            };
+            calculatePosition();
 
             // Random rotation in radians
             this.rad = Math.random() * Math.PI * 2;
+
+            // Recalculate position while collisions with
+            // exclusion target are detected.
+            if (state.ex !== null) {
+                const cBounds = state.canvas.getBoundingClientRect();
+                const exBounds = state.ex.getBoundingClientRect();
+                while (subtle_intersects(
+                    cBounds.left + this.x - (state.conf.size),
+                    cBounds.left + this.x + (state.conf.size * 2),
+                    cBounds.top + this.y - (state.conf.size),
+                    cBounds.top + this.y + (state.conf.size * 2),
+                    exBounds.left,
+                    exBounds.right,
+                    exBounds.top,
+                    exBounds.bottom
+                )) calculatePosition();
+            }
         }
 
         // Update particle
         update(state) {
 
-            // Increase radius/size by speed
+            // Increase size by speed
             this.r += this.s;
 
             // Increase hue by 1
             this.c = (this.c + 1) % 360;
 
             // r <= 25%
-            if (this.r < state.conf.radius * 0.25) {
-                this.a = (this.r / (state.conf.radius * 0.25));
+            if (this.r < state.conf.size * 0.25) {
+                this.a = (this.r / (state.conf.size * 0.25));
             }
 
             // r >= 25% && r <= 75%
-            else if (this.r >= state.conf.radius * 0.25 && this.r <= state.conf.radius * 0.75) {
+            else if (this.r >= state.conf.size * 0.25 && this.r <= state.conf.size * 0.75) {
                 this.a = 1;
             }
 
             // r >= 75% && r <= 100%
-            else if (this.r >= state.conf.radius * 0.75 && this.r <= state.conf.radius) {
-                this.a = (state.conf.radius - this.r) / (state.conf.radius * 0.25);
+            else if (this.r >= state.conf.size * 0.75 && this.r <= state.conf.size) {
+                this.a = (state.conf.size - this.r) / (state.conf.size * 0.25);
             }
 
             // r > 100%
@@ -206,12 +232,14 @@
     // Default configuration
     const DefaultConf = {
         target: 'body',
-        radius: 32,
+        exclude: null,
+        size: 32,
         speed: 0.25,
         count: 25,
         lightness: 0.75,
         saturation: 0.25,
         randomizeRotation: false,
+        contain: false,
         mode: Modes.square,
     };
     
@@ -231,20 +259,20 @@
         // Style appropriately
         canvas.style.position = 'absolute';
         canvas.style.zIndex = '-1';
-        canvas.style.top = '0';
-        canvas.style.left = '0';
 
         // Merge configuration
         const finalConf = Object.assign({}, DefaultConf, conf);
 
-        // Get target element
+        // Get target and exclusion elements
         const targetEl = document.querySelector(finalConf.target || 'body');
+        const excludeEl = finalConf.exclude ? document.querySelector(finalConf.exclude) : null;
 
         // Initialize state
         const state = {
             canvas: canvas,
             conf: finalConf,
             el: targetEl,
+            ex: excludeEl,
         };
 
         // Add canvas to target element
