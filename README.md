@@ -1,6 +1,6 @@
-A beautiful, calm and subtle particle effect using canvas.
+A beautiful, calm and subtle particle effect using canvas. Click the image for a live preview.
 
-![splash.png](splash.png)
+[![splash.png](splash.png)](https://splittydev.github.io/subtle/)
 
 ## Setup
 
