@@ -1,6 +1,6 @@
 A beautiful, calm and subtle particle effect using canvas.
 
-![screenshot.png](screenshot.png)
+![splash.png](splash.png)
 
 ## Setup
 
