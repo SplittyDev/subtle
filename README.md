@@ -11,7 +11,7 @@ A beautiful, calm and subtle particle effect using canvas.
    ```html
    <!-- Start of Subtle.js -->
    <script src="subtle.js"></script>
-   <script>document.addEventListener('DOMContentLoaded', Subtle.mount);      </script>
+   <script>document.addEventListener('DOMContentLoaded', Subtle.mount);</script>
    <!-- End of Subtle.js -->
    ```
 
