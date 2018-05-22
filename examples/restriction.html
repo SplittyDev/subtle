@@ -12,10 +12,12 @@
                 mode: Subtle.mode.square,
                 speed: 0.2,
                 size: 32,
-                count: 50,
+                count: 25,
                 lightness: 0.75,
                 saturation: 0.25,
                 randomizeRotation: true,
+                target: 'main',
+                contain: true,
             });
         });
     </script>
@@ -34,6 +36,14 @@
             font-family: Arial, Helvetica, sans-serif;
             font-size: 14px;
         }
+        main {
+            width: 50vw;
+            height: 50vh;
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            align-items: center;
+        }
         h1 {
             font-size: 3rem;
             background-color: hsla(0,0%,100%,.75);
@@ -47,6 +57,8 @@
     </style>
 </head>
 <body>
-    <h1>Subtle<span class="js">.js</span></h1>
+    <main>
+        <h1>Subtle<span class="js">.js</span></h1>
+    </main>
 </body>
 </html>

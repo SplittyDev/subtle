@@ -11,12 +11,14 @@
             Subtle.mount({
                 mode: Subtle.mode.square,
                 speed: 0.2,
-                radius: 32,
-                count: 25,
+                size: 32,
+                count: 50,
                 lightness: 0.75,
                 saturation: 0.25,
                 randomizeRotation: true,
                 target: 'main',
+                exclude: 'h1',
+                contain: true,
             });
         });
     </script>
@@ -37,7 +39,7 @@
         }
         main {
             width: 50vw;
-            height: 50vh;
+            height: 75vh;
             display: flex;
             flex-flow: row;
             justify-content: center;
@@ -45,8 +47,7 @@
         }
         h1 {
             font-size: 3rem;
-            background-color: hsla(0,0%,100%,.75);
-            padding: 10rem 10rem;
+            padding: 1rem 1rem;
             border-radius: 100rem 100rem;
             color: hsl(0,0%,15%);
         }
